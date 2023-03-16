@@ -1,8 +1,8 @@
 import { webhookCallback } from "grammy/mod.ts";
 import { serve } from "std/http/server.ts";
-import { composer } from "./src/handlers/app.ts";
-import { getBot } from "./src/bots.ts";
-import { TG_ALLOWED_UPDATES, TG_ENV_S } from "./src/consts.ts";
+import { composer } from "./handler.ts";
+import { getBot } from "./bots.ts";
+import { TG_ALLOWED_UPDATES, TG_ENV_S } from "./consts.ts";
 
 if (TG_ENV_S.LP) {
     // Create an instance of the `Bot` class and pass your authentication token to it.
@@ -10,7 +10,6 @@ if (TG_ENV_S.LP) {
     if (bot) {
         // You can now register listeners on your bot object `bot`.
         // grammY will call the listeners when users send messages to your bot.
-        // Handle the /start command.
         bot.use(composer);
         // start bot
         bot.start({
@@ -34,7 +33,6 @@ if (TG_ENV_S.LP) {
                 if (bot) {
                     // You can now register listeners on your bot object `bot`.
                     // grammY will call the listeners when users send messages to your bot.
-                    // Handle the /start command.
                     bot.use(composer);
                     // finally, register the webhook
                     // https://t.me/c/1493653006/49880
