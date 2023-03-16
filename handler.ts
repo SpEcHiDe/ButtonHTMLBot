@@ -44,10 +44,6 @@ composer.on("callback_query", async (ctx: MyContext) => {
     await ctx.answerCallbackQuery();
 
     const cbData = ctx.callbackQuery?.data;
-
-    if (cbData === ADD_NEW_CBDATA) {
-
-    }
 });
 
 
