@@ -1,4 +1,4 @@
-import { Context } from "grammy/web";
+import { Context } from "grammy/mod.ts";
 
 interface BotConfig {
     botDeveloper: number;
