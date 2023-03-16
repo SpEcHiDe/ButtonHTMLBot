@@ -1,0 +1,16 @@
+{
+    "tasks": {
+        "start": "deno run --allow-net --allow-read --allow-env start.ts",
+        "serverless": "deno run --allow-net --allow-read --allow-env start.ts"
+    },
+    "importMap": "./import_map.json",
+    "fmt": {
+        "options": {
+            "useTabs": false,
+            "lineWidth": 80,
+            "indentWidth": 4,
+            "singleQuote": false,
+            "proseWrap": "preserve"
+        }
+    }
+}
