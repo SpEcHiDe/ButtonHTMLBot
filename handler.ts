@@ -8,9 +8,12 @@ const ADD_NEW_CBDATA = "add_new";
 const TEXT_URL_SEPERATOR = "|";
 const INVALID_FIRST_MESSAGE = "invalid message";
 const SAME_URL_SEPERATOR = "|same";
+const START_MESSAGE = `start message TODO`;
 
 composer.command("start", async (ctx: MyContext) => {
-    await ctx.reply("/start");
+    await ctx.reply(START_MESSAGE, {
+        reply_to_message_id: ctx.message?.message_id,
+    });
 });
 
 
