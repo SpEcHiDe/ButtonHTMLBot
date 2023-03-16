@@ -75,9 +75,15 @@ composer
     }
     let currentNewText: string | undefined = "";
     let currentNewUrl: string | undefined = "";
+    let isSameLine: boolean = false;
     if (msgtextparts?.length > 1) {
         currentNewUrl = msgtextparts.shift();
+        currentNewUrl = currentNewUrl.trim();
         currentNewText = msgtextparts?.join(TEXT_URL_SEPERATOR);
+        if (currentNewText.indexOf("|same") > -1) {
+            isSameLine = true;
+            currentNewText = currentNewText.replace("|same", "");
+        }
     }
     let prevReplyMarkup = ctx.message?.reply_to_message?.reply_markup;
     if (prevReplyMarkup === undefined) {
@@ -93,10 +99,19 @@ composer
         }
     }
     else {
-        prevReplyMarkup.inline_keyboard[0].push({
-            text: currentNewText,
-            url: currentNewUrl
-        });
+        let lastNum = prevReplyMarkup.inline_keyboard.length;
+        if (isSameLine) {
+            prevReplyMarkup.inline_keyboard[lastNum - 1].push({
+                text: currentNewText,
+                url: currentNewUrl
+            });
+        }
+        else {
+            prevReplyMarkup.inline_keyboard.push([{
+                text: currentNewText,
+                url: currentNewUrl
+            }]);
+        }
     }
     await ctx.editMessageReplyMarkup({
         chat_id: ctx.message?.chat.id,
