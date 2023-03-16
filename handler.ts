@@ -33,16 +33,6 @@ composer
                     message_id: ctx.message?.message_id,
                     caption: ctx.message?.caption,
                     caption_entities: ctx.message?.caption_entities,
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                {
-                                    text: "+",
-                                    callback_data: ADD_NEW_CBDATA
-                                }
-                            ]
-                        ]
-                    },
                     reply_to_message_id: ctx.message?.message_id,
                 }
             );
