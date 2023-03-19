@@ -1,7 +1,6 @@
 import { Bot, GrammyError, HttpError } from "grammy/mod.ts";
-import { parseMode } from "parse_mode";
 import { TG_ENV_S } from "./consts.ts";
-import { MyContext } from "./myContext.ts"
+import { MyContext } from "./myContext.ts";
 
 const bots = new Map<string, Bot<MyContext>>();
 
@@ -17,22 +16,20 @@ export function getBot(token: string) {
                 },
             });
             bot.use(async (ctx, next): Promise<void> => {
-				// take time before
-				// const before = Date.now(); // milliseconds
-				// set token attribute
-				ctx.botConfig = {
-					botDeveloper: TG_ENV_S.OWCID,
-					botToken: token,
-				};
-				// invoke downstream middleware
-				await next(); // make sure to `await`!
-				// take time after
-				// const after = Date.now(); // milliseconds
-				// log difference
-				// console.log(`Response time: ${after - before} ms`);
-			});
-            // Sets default parse_mode for ctx.reply
-            // bot.api.config.use(parseMode("HTML"));
+                // take time before
+                // const before = Date.now(); // milliseconds
+                // set token attribute
+                ctx.botConfig = {
+                    botDeveloper: parseInt(TG_ENV_S.OWCID),
+                    botToken: token,
+                };
+                // invoke downstream middleware
+                await next(); // make sure to `await`!
+                // take time after
+                // const after = Date.now(); // milliseconds
+                // log difference
+                // console.log(`Response time: ${after - before} ms`);
+            });
             // https://grammy.dev/guide/errors.html#catching-errors
             bot.catch((err) => {
                 const ctx = err.ctx;

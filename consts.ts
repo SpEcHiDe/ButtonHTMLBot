@@ -1,5 +1,3 @@
-import { Update } from "grammy/types.ts";
-
 // Telegram Constants
 export const TG_MAX_MESSAGE_LENGTH = 4096;
 export const TG_MAX_CAPTION_LENGTH = 1024;
@@ -18,4 +16,5 @@ export const TG_ALLOWED_UPDATES = [
     "chat_member",
     "chat_join_request",
 ];
+
 export const TG_ENV_S = Deno.env.toObject();
